@@ -3,7 +3,8 @@
  * Name: Trey Manuszak
  * ASU email: tmanusza@asu.edu
  * Course: CSE240 TTh 1030-1145
- * File Description:
+ * File Description: This class contains student name information
+ * and a method to return initials.
  * */
 
 public class Student {

@@ -1,3 +1,12 @@
+/*
+* Assignment: Homework #1
+* Name: Trey Manuszak
+* ASU email: tmanusza@asu.edu
+* Course: CSE240 TTh 1030-1145
+* File Description:
+* */
+
+/*
 import java.util.Scanner;
 
 public class HomeworkTwo {
@@ -48,4 +57,4 @@ public class HomeworkTwo {
 		
 		sc.close();
 	}
-}
+}*/

@@ -24,12 +24,10 @@ int main()
         table[i] = inputNumber * (i + 1);
     }
 
-    // Print table
-    printf("*\t1\t2\t3\t4\t5\t6\t7\t8\t9\t10\n");
-    printf("%d", inputNumber);
+    // Print table 
     for (int i = 0; i < 10; i++)
     {
-        printf("\t%d", table[i]);
+        printf("%d ", table[i]);
     }
 
     return 0;

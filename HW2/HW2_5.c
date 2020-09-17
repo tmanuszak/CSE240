@@ -3,38 +3,48 @@
  * Name: Trey Manuszak
  * ASU email: tmanusza@asu.edu
  * Course: CSE240 TTh 1030-1145
- * File Description: C program to multiply two arrays of size n defined as (arr1*arr2)[i] = arr1[(n-1)-i] * arr2[i]
+ * File Description: C program to multiply two arrays of size n defined as (arr3)[i] = arr1[(n-1)-i] * arr2[i]
  * */
 
-#include <stdlib.h>
 #include <stdio.h>
-#include <limits.h>     // Used for SHRT_MAX
-#define ARRAY_LENGTH 10 // change as desired
 
 int main()
 {
+    int arrayLength;
 
-    int arr1[ARRAY_LENGTH], arr2[ARRAY_LENGTH];
-    long int arr3[ARRAY_LENGTH];
-
-    // initialize arrays with random integers
-    for (int i = 0; i < ARRAY_LENGTH; i++)
+    // Get array length from user
+    printf("Enter the length of the arrays: ");
+    scanf("%d", &arrayLength);
+    while (arrayLength < 0)
     {
-        arr1[i] = rand() % SHRT_MAX;
+        printf("Array length must be non-negative.\nEnter the length of the arrays: ");
+        scanf("%d", &arrayLength);
     }
-    for (int i = 0; i < ARRAY_LENGTH; i++)
+    // Initialize arrays
+    int arr1[arrayLength], arr2[arrayLength];
+    long int arr3[arrayLength];
+
+    // Fill arrays from user
+    for (int i = 0; i < arrayLength; i++)
     {
-        arr2[i] = rand() % SHRT_MAX;
+        printf("Enter element %d of array1: ", (i + 1));
+        scanf("%d", &arr1[i]);
+    }
+    for (int i = 0; i < arrayLength; i++)
+    {
+        printf("Enter element %d of array2: ", (i + 1));
+        scanf("%d", &arr2[i]);
     }
 
     // Calculate arr3
-    for (int i = 0; i < ARRAY_LENGTH; i++)
+    for (int i = 0; i < arrayLength; i++)
     {
-        arr3[i] = arr2[i] * arr1[ARRAY_LENGTH - 1 - i];
+        arr3[i] = arr2[i] * arr1[arrayLength - 1 - i];
     }
 
     // Print arr3
-    for (int i = 0; i < ARRAY_LENGTH; i++)
+    printf("array3 contains: ");
+    for (int i = 0; i < arrayLength; i++)
     {
         printf("%ld ", arr3[i]);
     }

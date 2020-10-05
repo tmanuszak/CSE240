@@ -19,13 +19,13 @@ char *game_piece_get_label(struct game_piece *piece) {
 }
 
 char *game_piece_to_string(struct game_piece *piece) {
-    char *three_letter_str = (char *) (sizeof(char) * 4);
+    char *three_letter_str = malloc(4 * sizeof(char));
     int see_null = 0; // If we see '\0' in *((*piece).label + i), then turn to 1
     for (char i = 0; i < 3; i++) {
         if (piece->label[i] != '\0' && see_null == 0) {
-            *(three_letter_str + i) = *((*piece).label + i);
+            three_letter_str[i] = piece->label[i];
         } else {
-            *(three_letter_str + i) = ' ';
+            three_letter_str[i] = ' ';
             see_null = 1;
         }
     }
@@ -41,19 +41,17 @@ struct game_board {
 };
 
 void game_board_init(struct game_board *game_board, int rows, int cols) {
-    *(*game_board).board = (struct game_piece *) malloc(rows * sizeof(struct game_piece *));
+    game_board->board = malloc(rows * sizeof(struct game_piece *));
     for (int i = 0; i < rows; ++i) {
         game_board->board[i] = malloc(cols * sizeof(struct game_piece));
     }
-//    struct game_piece temp_board[rows][cols];
-//
-//    for (int i = 0; i < rows; ++i) {
-//        for (int j = 0; j < cols; ++j) {
-//            game_piece_init_default(temp_board[i][j]);
-//        }
-//    }
-//
-//    (*game_board).board = temp_board;
+
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            struct game_piece * piece_pointer = &(game_board->board[i][j]);
+            game_piece_init_default(piece_pointer);
+        }
+    }
 }
 
 int game_board_is_space_valid(struct game_board *game_board, int row, int col) {

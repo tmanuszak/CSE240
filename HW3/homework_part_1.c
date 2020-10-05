@@ -3,7 +3,7 @@
  * Name: Trey Manuszak
  * ASU email: tmanusza@asu.edu
  * Course: CSE240 TTh 1030-1145
- * File Description: 
+ * File Description: File with functions for array initalization, printing arrays, insertion sort, and recursive factorial.
  * */
 
 #include <stdio.h>

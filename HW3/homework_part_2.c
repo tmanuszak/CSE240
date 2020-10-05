@@ -1,3 +1,11 @@
+/*
+ * Assignment: Homework #3
+ * Name: Trey Manuszak
+ * ASU email: tmanusza@asu.edu
+ * Course: CSE240 TTh 1030-1145
+ * File Description: Program that simulates a games board that adds, removes, and moves game pieces.
+ * */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,18 +14,62 @@ struct game_piece {
     char label[30];
 };
 
+struct game_board {
+    int rows, columns;
+    struct game_piece **board;
+};
+
+/*
+Function:  game_piece_init_default
+--------------------
+Initializes a game piece to "$$$".
+
+Parameters:
+    struct game_piece *piece: The piece being initialized to "$$$".
+*/
 void game_piece_init_default(struct game_piece *piece) {
-    strcpy(piece->label, "$$$"); // Copy "$$$" to piece->ch
+    strcpy(piece->label, "$$$"); // Copy "$$$" to piece->label
 }
 
+/*
+Function:  game_piece_init
+--------------------
+Initializes a game piece to a new label value.
+
+Parameters:
+    struct game_piece *piece: The piece that is having it's label changed.
+    char *new_label: The new label of the piece.
+*/
 void game_piece_init(struct game_piece *piece, char *new_label) {
     strcpy(piece->label, new_label);
 }
 
+/*
+Function:  game_piece_get_label
+--------------------
+Function to get the label of a game piece.
+
+Parameters:
+    struct game_piece *piece: The piece that we want the label of.
+
+Returns:
+    char *: A pointer to the piece's label.
+*/
 char *game_piece_get_label(struct game_piece *piece) {
     return piece->label;
 }
 
+/*
+Function:  game_piece_to_string
+--------------------
+Function to get the first three characters in a piece's label.
+
+Parameters:
+    struct game_piece *piece: The piece that we want to turn into a string.
+
+Returns:
+    char *: Returns the first 3 characters of the piece's label.
+*/
 char *game_piece_to_string(struct game_piece *piece) {
     char *three_letter_str = malloc(4 * sizeof(char));
     int see_null = 0; // If we see '\0' in *((*piece).label + i), then turn to 1
@@ -35,11 +87,16 @@ char *game_piece_to_string(struct game_piece *piece) {
     return three_letter_str;
 }
 
-struct game_board {
-    int row, column;
-    struct game_piece **board;
-};
+/*
+Function:  game_board_init
+--------------------
+Creates a 2d, rows x cols, array of game pieces and initializes them to "$$$".
 
+Parameters:
+    struct game_board *game_board: The pointer to the game board to be created.
+    int rows: Number of rows the game board should be.
+    int cols: Number of columns the game board should be.
+*/
 void game_board_init(struct game_board *game_board, int rows, int cols) {
     game_board->board = malloc(rows * sizeof(struct game_piece *));
     for (int i = 0; i < rows; ++i) {
@@ -48,28 +105,53 @@ void game_board_init(struct game_board *game_board, int rows, int cols) {
 
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
-            struct game_piece * piece_pointer = &(game_board->board[i][j]);
-            game_piece_init_default(piece_pointer);
+            game_piece_init_default(&(game_board->board[i][j]));
         }
     }
+
+    game_board->rows = rows;
+    game_board->columns = cols;
 }
 
-int game_board_is_space_valid(struct game_board *game_board, int row, int col) {
-    int total = sizeof((*game_board).board);
-    int number_of_cols = sizeof((*game_board).board[0]);
-    int number_of_rows = total / number_of_cols;
+/*
+Function:  game_board_is_space_valid
+--------------------
+Checks to see if the index of row and col exist for the game board.
 
-    if ((col >= 0 && col <= number_of_cols) && (row >= 0 && row <= number_of_rows)) {
+Parameters:
+    struct game_board *game_board: Pointer to the game board.
+    int row: Row index
+    int col: Column index
+
+Returns:
+    int: 1 if indices exist, 0 otherwise.
+*/
+int game_board_is_space_valid(struct game_board *game_board, int row, int col) {
+    if ((col >= 0 && col < game_board->columns) && (row >= 0 && row < game_board->rows)) {
         return 1;
     } else {
         return 0;
     }
 }
 
-int game_board_add_piece(struct game_board *game_board, struct game_piece *piece, int row, int col) {
-    char *piece_string = game_piece_to_string(piece);
-    int is_default = strcmp(piece_string, "$$$"); // is_default = 0 if piece is default, else is_default = 1;
-    if (game_board_is_space_valid(game_board, row, col) == 1 && is_default == 0) {
+/*
+Function:  game_board_add_piece
+--------------------
+Adds a piece to the game board.
+
+Parameters:
+    struct game_board *game_board: Pointer to the game board.
+    struct game_piece *piece: Pointer to the game piece to be added.
+    int row: Row index
+    int col: Column index
+
+Returns:
+    int: 1 if added, 0 otherwise.
+*/
+int game_board_add_piece(struct game_board *game_board, struct game_piece *piece, int row,
+                         int col) {
+    if (game_board_is_space_valid(game_board, row, col) == 1 &&
+        strcmp(game_piece_to_string(&(game_board->board[row][col])), "$$$") == 0) {
         game_board->board[row][col] = *piece;
         return 1;
     } else {
@@ -77,14 +159,26 @@ int game_board_add_piece(struct game_board *game_board, struct game_piece *piece
     }
 }
 
+/*
+Function:  game_board_move_piece
+--------------------
+Moves a piece on the board to a new location and changes the old location to the default value.
+
+Parameters:
+    struct game_board *game_board: Pointer to the game board.
+    int src_row: Index of the source row.
+    int src_col: Index of the source column.
+    int dest_row: Index of the destination row.
+    int dest_col: Index of the destination column.
+
+Returns:
+    int: 1 if moved, 0 otherwise.
+*/
 int game_board_move_piece(struct game_board *game_board, int src_row, int src_col, int dest_row, int dest_col) {
-    struct game_piece * dest_pointer = &(game_board->board[dest_row][dest_col]);
-    struct game_piece * src_pointer = &(game_board->board[src_row][src_col]);
-    char *piece_string = game_piece_to_string(dest_pointer);
-    int is_default = strcmp(piece_string, "$$$"); // is_default = 0 if piece is default, else is_default = 1;
+    struct game_piece *src_pointer = &(game_board->board[src_row][src_col]);
     if (game_board_is_space_valid(game_board, src_row, src_col) == 1
         && game_board_is_space_valid(game_board, dest_row, dest_col) == 1
-        && is_default == 0) {
+        && strcmp(game_piece_to_string(&(game_board->board[dest_row][dest_col])), "$$$") == 0) {
         game_board->board[dest_row][dest_col] = game_board->board[src_row][src_col];
         game_piece_init_default(src_pointer);
         return 1;
@@ -93,16 +187,21 @@ int game_board_move_piece(struct game_board *game_board, int src_row, int src_co
     }
 }
 
-void game_board_print(struct game_board * game_board) {
-    int total = sizeof((*game_board).board);
-    int number_of_cols = sizeof((*game_board).board[0]);
-    int number_of_rows = total / number_of_cols;
+/*
+Function:  game_board_print
+--------------------
+Prints the current state of the game board.
+
+Parameters:
+    struct game_board *game_board: Pointer to the game board.
+*/
+void game_board_print(struct game_board *game_board) {
     printf("The GameBoard\n---------------------------------\n");
 
-    for (int i = 0; i < number_of_rows; ++i) {
-        for (int j = 0; j < number_of_cols; ++j) {
-            struct game_piece * piece_pointer = &(game_board->board[i][j]);
-            printf("%s",game_piece_to_string(piece_pointer));
+    for (int i = 0; i < game_board->rows; ++i) {
+        for (int j = 0; j < game_board->columns; ++j) {
+            struct game_piece *piece_pointer = &(game_board->board[i][j]);
+            printf("%s", game_piece_to_string(piece_pointer));
             printf(" ");
         }
         printf("\n");

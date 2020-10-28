@@ -1,3 +1,11 @@
+/*
+ * Assignment: Homework #4
+ * Name: Trey Manuszak
+ * ASU email: tmanusza@asu.edu
+ * Course: CSE240 TTh 1030-1145
+ * File Description: Program that simulates a games board that adds, removes, and moves game pieces.
+ * */
+
 int main() {
     int a [10] = {3, 5, 6, 9, 12, 13, 16, 17, 18, 20};  
     int b [6]= {18, 16, 19, 3 ,14, 6}; 

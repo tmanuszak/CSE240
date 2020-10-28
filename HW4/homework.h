@@ -7,4 +7,10 @@
  * */
 
 class Homework {
-
+	public:
+		Homework(); // constructor
+		void initializingArray(int*, int);
+		void printingArray(int*, int);
+		void selectionSort(int*, int);
+		int factorial(int);
+};

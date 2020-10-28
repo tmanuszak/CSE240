@@ -25,9 +25,10 @@ void Homework::initializingArray(int* arr, int size) {
 }
 
 void Homework::printingArray(int* arr, int size) {
-	for (int i = 0; i < size; i++) {
-		cout << arr[i] << endl;
+	for (int i = 0; i < size - 1; i++) {
+		cout << arr[i] << ", ";
 	}
+	cout << arr[size - 1] << endl;
 }
 
 void Homework::selectionSort(int* arr, int size) {

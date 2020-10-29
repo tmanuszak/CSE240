@@ -55,6 +55,12 @@ class Patron {
 		*/
 		char* toString();
 
+		/*
+		Destructor
+		-------------------
+		*/
+		~Patron();
+
 	private:
 		char lastName [25];
 		char firstName [25];

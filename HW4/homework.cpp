@@ -3,17 +3,30 @@
  * Name: Trey Manuszak
  * ASU email: tmanusza@asu.edu
  * Course: CSE240 TTh 1030-1145
- * File Description: Program that simulates a games board that adds, removes, and moves game pieces.
+ * File Description: Source file with various methods for arrays.
  * */
 
 #include <iostream>
 using namespace std;
 #include "homework.h"
 
+/*
+Constructor
+--------------------
+*/
 Homework::Homework() { //constructor 
 
 }
 
+/*
+Function:  initializingArray
+--------------------
+Function to initialize even indicies to 1 and odd indices to 0.
+
+Parameters:
+	int* :  Pointer to the array.
+	int  :  Size of the array.		  
+*/
 void Homework::initializingArray(int* arr, int size) {
 	for (int i = 0; i < size; i++) {
 		if (i % 2 == 0) {
@@ -24,6 +37,15 @@ void Homework::initializingArray(int* arr, int size) {
 	}
 }
 
+/*
+Function:  printingArray
+--------------------
+Function to print an array of ints.
+
+Parameters:
+	int* :  Pointer to the array.
+	int  :  Size of the array. 
+*/
 void Homework::printingArray(int* arr, int size) {
 	for (int i = 0; i < size - 1; i++) {
 		cout << arr[i] << ", ";
@@ -31,6 +53,14 @@ void Homework::printingArray(int* arr, int size) {
 	cout << arr[size - 1] << endl;
 }
 
+/*
+Function:  selectionSort
+--------------------
+Function to sort an array in ascending order using selection sort.
+Parameters:
+	int* :  Pointer to the array.
+	int  :  Size of the array.
+*/
 void Homework::selectionSort(int* arr, int size) {
 	int smallIndex = 0;
 	// Shrinking window
@@ -50,6 +80,15 @@ void Homework::selectionSort(int* arr, int size) {
 	} 	
 }
 
+/*
+Function:  factorial
+--------------------
+Function to calculate the factorial of an integer recursively.
+Parameters:
+	int  :  The factorial to be calculated.		   
+Returns:
+    	int  :  The factorial of the integer.
+*/
 int Homework::factorial(int num) {
 	if (num >= 2) {
 		return num * factorial(num - 1);

@@ -14,7 +14,7 @@ using namespace std;
 Constructor
 --------------------
 */
-Homework::Homework() { //constructor 
+Homework::Homework() {  
 
 }
 

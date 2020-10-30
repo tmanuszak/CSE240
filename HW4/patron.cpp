@@ -3,7 +3,7 @@
  * Name: Trey Manuszak
  * ASU email: tmanusza@asu.edu
  * Course: CSE240 TTh 1030-1145
- * File Description: Main file to HW4_1.
+ * File Description: Source file for the Patron class, which contains information and methods for a patron of a theatre.
  * */
 
 #include <cstring>
@@ -39,7 +39,7 @@ Patron::Patron(char* name) {
 /*
 Function: getLastName
 --------------------
-Function return the last name of a patron.
+Function returns the last name of a patron.
 
 Return:
 	char* name : The pointer to the Patron's last name.	

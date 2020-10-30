@@ -17,8 +17,8 @@ Constructor
 Constructor for the Patron class that initializes lastName and firstName to "###".		  
 */
 Patron::Patron() {
-	lastName = "###";
-	firstName = "###";
+	strcpy(lastName, "###");
+	strcpy(firstName, "###");
 }		
 
 /*
@@ -32,8 +32,9 @@ Parameters:
 Patron::Patron(char* name) {
 	char* tokens;
 	tokens = strtok(name, "/");
-	firstName = tokens[0];
-	lastName = tokens[1];
+	strcpy(firstName, tokens);
+	tokens = strtok(NULL, "/");
+	strcpy(lastName, tokens);
 }
 
 /*
@@ -45,7 +46,7 @@ Return:
 	char* name : The pointer to the Patron's last name.	
 */
 char* Patron::getLastName() {
-	return &lastName;
+	return lastName;
 }
 
 /*
@@ -57,7 +58,7 @@ Return:
 	char* : The pointer to the Patron's first name.	
 */
 char* Patron::getFirstName() {
-	return &firstName;
+	return firstName;
 }
 
 /*
@@ -68,13 +69,16 @@ Function return the initials of a patron.
 Return:
 	char* : The pointer to the Patron's initials.	
 */
-char* toString() {
-	char initials[4];
-	initials[0] = firstName[0];
+char* Patron::toString() {
+	char* initials = new char[5];
+	char* first = this->getFirstName();
+	char* last = this->getLastName();
+	initials[0] = first[0];
 	initials[1] = '.';
-	initials[2] = lastName[0];
+	initials[2] = last[0];
 	initials[3] = '.';
-	return &initials;
+	initials[4] = '\0';
+	return initials;
 }
 
 /*

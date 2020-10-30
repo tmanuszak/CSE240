@@ -11,7 +11,7 @@ using namespace std;
 #include "patron.h"
 #include "theatre.h"
 
-void main()
+int main()
 {
     Theatre *theatre;
     Patron *tempPatron;
@@ -47,7 +47,7 @@ void main()
         cin >> col;
         // Checking if the row number and column number are valid
         // (exist in the theatre that we created.)
-        if (*theatre.checkBoundaries(row, col) == false)
+        if ((*theatre).checkBoundaries(row, col) == false)
         {
             cout << "\nrow or column number is not valid.";
             cout << "A patron" << (*tempPatron).getFirstName() << " " << (*tempPatron).getLastName() << " is not assigned a seat.";
@@ -70,4 +70,5 @@ void main()
         /*** reading a patron's information ***/
         cin >> patronInfo;
     }
+    return 0;
 }

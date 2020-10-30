@@ -14,8 +14,8 @@ class Theatre {
 		Constructor for the Theatre class that creates a two-dimensional array of Patrons.
 
 		Parameters:
-			int : row dimension of the theatre.
-			int : col dimension of the theatre.
+			const int : row dimension of the theatre.
+			const int : col dimension of the theatre.
 		*/
 		Theatre(int, int);
 
@@ -79,6 +79,5 @@ class Theatre {
 		*/
 		~Theatre();
 
-	private:
 		Patron** arrangement;
 };

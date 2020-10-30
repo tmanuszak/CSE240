@@ -6,7 +6,8 @@
  * File Description: Program that builds a theatre and fills it with patrons.
  * */
 
-
+#include <iostream>
+using namespace std;
 #include "patron.h"
 #include "theatre.h"
 

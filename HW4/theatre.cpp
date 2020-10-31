@@ -102,8 +102,7 @@ Return:
 */
 char* Theatre::toString() {
 	char* str = new char[0];
-	strncat(str, "The current arrangement\n--------------\n", sizeof("The current arrangement\n--------------\n"));
-	cout << "here";
+	strcpy(str, "");	
 	for (int i = 0; i < rowSize; i++) {
 		for (int j = 0; j < colSize; j++) {
 			str = strncat(str, arrangement[i][j].toString(), sizeof(arrangement[i][j].toString()));

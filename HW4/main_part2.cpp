@@ -58,7 +58,7 @@ int main()
             if ((*theatre).assignPatronAt(row, col, tempPatron) == true)
             {
                 cout << "\nThe seat at row " << row << " and column " << col << " is assigned to the patron, " << (*tempPatron).toString();
-                (*theatre).toString();
+                cout << (*theatre).toString();
             }
             else
             {

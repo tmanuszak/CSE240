@@ -80,4 +80,6 @@ class Theatre {
 		~Theatre();
 
 		Patron** arrangement;
+		int rowSize; // How many rows the theatre has.
+		int colSize; // How many columns the theatre has.
 };

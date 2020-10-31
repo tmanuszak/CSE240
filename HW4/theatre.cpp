@@ -101,8 +101,10 @@ Return:
 	char* : pointer to the string of the arrangement.	
 */
 char* Theatre::toString() {
-	char* str = new char[0];
-	strcpy(str, "");	
+	char* str = new char[5 * rowSize * colSize + 40]; // Should be enough allocated memory for the map
+	strcpy(str, "");
+	char intro[] = "\nThe current arrangement\n----------------------\n";
+	str = strncat(str, intro, sizeof(intro));	
 	for (int i = 0; i < rowSize; i++) {
 		for (int j = 0; j < colSize; j++) {
 			str = strncat(str, arrangement[i][j].toString(), sizeof(arrangement[i][j].toString()));

@@ -34,14 +34,14 @@ int main()
     /* we will read line by line **/
     while (patronInfo != "Q" || patronInfo != "q")
     {
-        cout << "\nA patron information is read.";
+        cout << "A patron information is read.\n";
         // printing information.
         cout << patronInfo;
         // patron
         tempPatron = new Patron(patronInfo);
         // Ask a user to decide where to seat a patron by asking
         // for row and column of a seat
-        cout << "Please enter a row number where the patron wants to sit.";
+        cout << "\nPlease enter a row number where the patron wants to sit.";
         cin >> row;
         cout << "Please enter a column number where the patron wants to sit.";
         cin >> col;
@@ -49,24 +49,24 @@ int main()
         // (exist in the theatre that we created.)
         if ((*theatre).checkBoundaries(row, col) == false)
         {
-            cout << "\nrow or column number is not valid.";
-            cout << "A patron" << (*tempPatron).getFirstName() << " " << (*tempPatron).getLastName() << " is not assigned a seat.";
+            cout << "Row or column number is not valid.";
+            cout << "\nA patron " << (*tempPatron).getFirstName() << " " << (*tempPatron).getLastName() << " is not assigned a seat.";
         }
         else
         {
             // Assigning a seat for a patron
             if ((*theatre).assignPatronAt(row, col, tempPatron) == true)
             {
-                cout << "\nThe seat at row " << row << " and column " << col << " is assigned to the patron, " << (*tempPatron).toString();
+                cout << "The seat at row " << row << " and column " << col << " is assigned to the patron, " << (*tempPatron).toString();
                 cout << (*theatre).toString();
             }
             else
             {
-                cout << "\nThe seat at row " << row << " and column " << col << " is taken.";
+                cout << "The seat at row " << row << " and column " << col << " is taken.";
             }
         }
         // Read the next patronInfo
-        cout << "Please enter a patron information or enter \"Q\" to quit.";
+        cout << "\nPlease enter a patron information or enter \"Q\" to quit.";
         /*** reading a patron's information ***/
         cin >> patronInfo;
     }

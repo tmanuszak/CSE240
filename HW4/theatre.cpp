@@ -7,7 +7,6 @@
  * */
 
 #include <cstring>
-#include <iostream>
 using namespace std;
 #include "patron.h"
 #include "theatre.h"
@@ -65,7 +64,7 @@ Return:
 */
 bool Theatre::assignPatronAt(int row, int col, Patron* pat) {	
 	if(strcmp(this->getPatronAt(row, col)->getFirstName(), "###") == 0 
-		&& strcmp(this->getPatronAt(row, col)->getLastName(), "###") == 0) {
+		&& strcmp(this->getPatronAt(row, col)->getLastName(), "###") == 0) {	
 		arrangement[row][col] = *pat;
 		return true;
 	}

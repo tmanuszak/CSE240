@@ -3,7 +3,7 @@
 ; ASU email: tmanusza@asu.edu
 ; Course: CSE240 TTh 1030-1145
 ; File Description: Main file to HW5 that contains various lisp functions 
-; manipulating using control structures and recursive techniques to manipulate data.
+; using control structures and recursive techniques to manipulate data.
 
 ; Function: multiply
 ; --------------------
